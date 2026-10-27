@@ -45,19 +45,6 @@ public:
         count--;
     }
 
-    void deleteJob(int id) {
-        for (int i = 0; i < count; i++) {
-            if (jobs[(front + i) % MAX].id == id) {
-                for (int k = i; k < count - 1; k++)
-                    jobs[(front + k) % MAX] = jobs[(front + k + 1) % MAX];
-                count--;
-                cout << "Job " << id << " deleted.\n";
-                return;
-            }
-        }
-        cout << "Job not found.\n";
-    }
-
     void display() {
         if (isEmpty()) {
             cout << "No pending jobs.\n";
@@ -73,8 +60,8 @@ public:
 int main() {
     Queue q;
     int ch = 0;
-    while (ch != 5) {
-        cout << "\n1.Add Job  2.Print Next Job  3.Display Jobs  4.Delete Job  5.Exit\nChoice: ";
+    while (ch != 4) {
+        cout << "\n1.Add Job  2.Print Next Job  3.Display Jobs  4.Exit\nChoice: ";
         if (!(cin >> ch)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -92,13 +79,7 @@ int main() {
         }
         else if (ch == 2) q.dequeue();
         else if (ch == 3) q.display();
-        else if (ch == 4) {
-            int id;
-            cout << "Job ID to delete: ";
-            cin >> id;
-            q.deleteJob(id);
-        }
-        else if (ch != 5) cout << "Invalid choice.\n";
+        else if (ch != 4) cout << "Invalid choice.\n";
     }
     return 0;
 }
